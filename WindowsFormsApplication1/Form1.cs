@@ -29,7 +29,7 @@ namespace WindowsFormsApplication1
             var identifier = 0;
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dogma1.html");
 
-            if (ops.InsertFileSimple(fileName, ref identifier, "Dogma1.html"))
+            if (ops.InsertFileSimple(fileName, "Dogma1.html", ref identifier))
             {
                 MessageBox.Show($"Id is {identifier}");
             }

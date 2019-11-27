@@ -10,7 +10,7 @@ namespace WindowsFormsApplication1
     {
         public string ExceptionMessage { get; set; } 
 
-        public bool InsertFileSimple(string FilePath, ref int NewIdentifier,string FileName)
+        public bool InsertFileSimple(string FilePath, string FileName, ref int NewIdentifier)
         {
             byte[] fileByes;
 
@@ -29,7 +29,9 @@ namespace WindowsFormsApplication1
 
                 using (var cmd = new SqlCommand() { Connection = cn, CommandText = statement })
                 {
-                    cmd.Parameters.Add("@FileContents", SqlDbType.VarBinary, fileByes.Length).Value = fileByes;
+                    cmd.Parameters.Add("@FileContents", 
+                        SqlDbType.VarBinary, fileByes.Length).Value = fileByes;
+
                     cmd.Parameters.AddWithValue("@FileName", FileName);
 
                     try
@@ -62,26 +64,26 @@ namespace WindowsFormsApplication1
                     {
                         cn.Open();
 
-                        var reader = cmd.ExecuteReader();
+                    var reader = cmd.ExecuteReader();
 
-                        if (reader.HasRows)
-                        {
-                            reader.Read();
+                    if (reader.HasRows)
+                    {
+                        reader.Read(); 
 
-                            // the blob field
-                            int ndx = reader.GetOrdinal("FileContents");
+                        // the blob field
+                        var fieldOrdinal = reader.GetOrdinal("FileContents");
 
-                            var blob = new byte[(reader.GetBytes(
-                                ndx, 0, 
-                                null, 0, 
-                                int.MaxValue))];
+                        var blob = new byte[(reader.GetBytes(
+                            fieldOrdinal, 0, 
+                            null, 0, 
+                            int.MaxValue))];
 
-                            reader.GetBytes(ndx, 0, blob, 0, blob.Length);
+                        reader.GetBytes(fieldOrdinal, 0, blob, 0, blob.Length);
 
-                            using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
-                                fs.Write(blob, 0, blob.Length);
+                        using (var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write))
+                            fs.Write(blob, 0, blob.Length);
 
-                        }
+                    }
 
                         return true;
 

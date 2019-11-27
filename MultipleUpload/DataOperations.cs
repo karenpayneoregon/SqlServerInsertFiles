@@ -65,7 +65,6 @@ namespace MultipleUpload
                         cmd.Parameters["@FileContents"].Value = fileByes;
                         cmd.Parameters["@FileName"].Value = Path.GetFileName(fileName);
 
-                        // ReSharper disable once PossibleNullReferenceException
                         OnLineHandler(this, new InsertFileArgs(new[]
                         {
                             Convert.ToInt32(cmd.ExecuteScalar()).ToString(),
