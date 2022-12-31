@@ -11,3 +11,5 @@ The `master` branch contains code samples for
 # This branch
 
 Is devoted to only working with insertion and reading images while the master branch is about any file type.
+
+There is a classic Windows Form project and a .NET Core class project, both have the exact same functionality.
