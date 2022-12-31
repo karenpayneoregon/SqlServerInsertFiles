@@ -1,14 +1,9 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
+﻿using Newtonsoft.Json;
+using System;
 using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
-using static DialogLibrary.KarenDialogs;
+using WindowsFormsApplication1.Classes;
 
 namespace WindowsFormsApplication1
 {
@@ -25,17 +20,18 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void InsertSimpleButton_Click(object sender, EventArgs e)
         {
-            var ops = new DataOperations();
-            var identifier = 0;
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Dogma1.html");
+            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "age.png");
 
-            if (ops.InsertFileSimple(fileName, "Dogma1.html", ref identifier))
+            var (success, identifier, bytes, exception) = DataOperations.InsertFileSimple(fileName);
+            if (success)
             {
+                var source = (DataTable)dataGridView1.DataSource;
+                source.Rows.Add(identifier,bytes, Path.GetFileName(fileName));
                 MessageBox.Show($"Id is {identifier}");
             }
             else
             {
-                MessageBox.Show($"Failed: {ops.ExceptionMessage}");
+                MessageBox.Show($"Failed: {exception.Message}");
             }
            
         }
@@ -47,68 +43,23 @@ namespace WindowsFormsApplication1
         /// <param name="e"></param>
         private void SelectSimpleButton_Click(object sender, EventArgs e)
         {
-            var ops = new DataOperations();
-            var identifier = 2;
-            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "extracted.html");
 
-            if (ops.ReadFileFromDatabaseTableSimple(identifier, fileName))
+            var identifier = 1;
+            var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, $"blub1{DateTime.Now.Millisecond}.png");
+            var (success, exception) = DataOperations.ReadFileFromDatabaseTableSimple(identifier, fileName);
+            if (success)
             {
-                MessageBox.Show("Success");
+                MessageBox.Show($"Success, extracted as blub1{DateTime.Now.Millisecond}.png");
             }
             else
             {
-                MessageBox.Show($"Failed: {ops.ExceptionMessage}");
+                MessageBox.Show($"Failed: {exception}");
             }
         }
-
-        /// <summary>
-        /// Simple example to add rows to our child table
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        /// <remarks>
-        /// This has already been executed running this again would 
-        /// duplicate the row. So we could run the following (super simple)
-        /// 
-        ///   SELECT id FROM EventAttachments WHERE FileBaseName = 'CPR'
-        /// 
-        /// To ensure it does not exists, of course we would do more conditions
-        /// in the WHERE for a real app.
-        /// </remarks>
-        private void InsertToChildTableButton_Click(object sender, EventArgs e)
-        {
-            if (Question("You might want to read comments first, continue?"))
-            {
-                var ops = new DataOperations();
-
-                var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventFiles", "CPR_2.docx");
-
-                // new identifier returned
-                var identifier = 0;
-
-                // existing row in parent table
-                var eventIdentifier = 1;
-
-                if (ops.InsertNewEvent(fileName, ref identifier, eventIdentifier))
-                {
-                    MessageBox.Show("Success");
-                }
-                else
-                {
-                    MessageBox.Show($"Failed: {ops.ExceptionMessage}");
-                }
-            }
-        }
-
+        
         private void Form1_Load(object sender, EventArgs e)
         {
-            var courseName = "Entity Framework 101";
-            label1.Text = courseName;
-
-            var ops = new DataOperations();
-            var id = ops.GetCourseIdentifier(courseName);
-
-            dataGridView1.DataSource = ops.GetAttachmentsForEvent(id);
+            dataGridView1.DataSource = DataOperations.GetAttachmentsForEvent();
             dataGridView1.ExpandColumns();
         }
     }
