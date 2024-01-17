@@ -124,6 +124,57 @@ public class DataOperations
             return (false, ex);
         }
     }
+    public (bool success, Exception exception) ReadFileFromDatabaseTableById(int id, string fileName)
+    {
+        using SqlConnection cn = new() { ConnectionString = ConnectionString() };
+        using SqlCommand cmd = new()
+        {
+            Connection = cn,
+            CommandText =
+                """
+                SELECT id, [FileContents], FileName
+                FROM Table1
+                WHERE id = @id;
+                """
+        };
+        cmd.Parameters.Add(new SqlParameter()
+        {
+            ParameterName = "@id",
+            DbType = DbType.Int32
+
+        }).Value = id;
+
+        try
+        {
+            cn.Open();
+
+            var reader = cmd.ExecuteReader();
+
+            if (reader.HasRows)
+            {
+                reader.Read();
+                Console.WriteLine($"\tRead back id: {reader.GetInt32(0)}");
+                // the blob field
+                var fieldOrdinal = reader.GetOrdinal("FileContents");
+
+                var blob = new byte[(reader.GetBytes(fieldOrdinal, 0, null, 0, int.MaxValue))];
+
+                reader.GetBytes(fieldOrdinal, 0, blob, 0, blob.Length);
+
+                using var fs = new FileStream(fileName, FileMode.Create, FileAccess.Write);
+                fs.Write(blob, 0, blob.Length);
+
+            }
+
+            return (true, null);
+
+        }
+
+        catch (Exception ex)
+        {
+            return (false, ex);
+        }
+    }
     /// <summary>
     /// 
     /// </summary>

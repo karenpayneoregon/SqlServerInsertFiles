@@ -47,6 +47,18 @@ internal partial class Program
             ExceptionHelpers.ColorStandard(exception);
         }
 
+        /*
+         * Read back image by primary key
+         */
+        var (success2, exception1) = operations.ReadFileFromDatabaseTableById(1, "blub1.png");
+        if (success2)
+        {
+            AnsiConsole.MarkupLine("[yellow]blub image extracted[/]");
+        }
+        else
+        {
+            ExceptionHelpers.ColorStandard(exception);
+        }
         ExitPrompt();
 
     }
