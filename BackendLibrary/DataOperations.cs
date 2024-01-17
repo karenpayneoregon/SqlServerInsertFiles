@@ -7,12 +7,28 @@ namespace BackendLibrary;
 public class DataOperations
 {
 
-    public void Reset()
+    public void ResetTable1()
     {
          using SqlConnection cn = new(ConnectionString());
 
-         cn.Execute("DELETE FROM dbo.TODO");
-         cn.Execute("DBCC CHECKIDENT (TODO, RESEED, 0)");
+         cn.Execute("DELETE FROM dbo.Table1");
+         cn.Execute("DBCC CHECKIDENT (Table1, RESEED, 0)");
+    }
+
+    public void ResetEventAttachments()
+    {
+        using SqlConnection cn = new(ConnectionString());
+
+        cn.Execute("DELETE FROM dbo.EventAttachments");
+        cn.Execute("DBCC CHECKIDENT (EventAttachments, RESEED, 0)");
+    }
+
+    public void ResetEvent()
+    {
+        using SqlConnection cn = new(ConnectionString());
+
+        cn.Execute("DELETE FROM dbo.Events");
+        cn.Execute("DBCC CHECKIDENT (Events, RESEED, 0)");
     }
 
     public (bool success, Exception exception) InsertFileSimple(string filePath, string fileName, ref int newIdentifier)
