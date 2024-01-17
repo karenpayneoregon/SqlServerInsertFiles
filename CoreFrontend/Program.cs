@@ -15,13 +15,23 @@ internal partial class Program
     static void Main(string[] args)
     {
         AnsiConsole.MarkupLine("[white on blue]Working[/]");
+
         DataOperations operations = new();
+
+        // physical file to insert into table
         var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Burning.png");
+        // new id after insert.
         var identifier = 0;
+
         var (success, exception) = operations.InsertFileSimple(fileName, "Burning.png", ref identifier);
+
         if (success)
         {
             AnsiConsole.MarkupLine("[green]Burning image inserted[/]");
+            /*
+             * Extract first instance of Burning.png as Burning1.png to the
+             * application folder
+             */
             var (successOut, exceptionOut) = operations.ReadFileFromDatabaseTableSimple("Burning.png", "BurningOut.png");
             if (successOut)
             {

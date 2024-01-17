@@ -12,6 +12,7 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution Items", "{CABD9EFD-ADCA-4272-98D4-0E7A6314F096}"
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
+		readmeOld.md = readmeOld.md
 	EndProjectSection
 EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net framework", "net framework", "{A077A170-7945-4DE2-82C6-09B457A43984}"
