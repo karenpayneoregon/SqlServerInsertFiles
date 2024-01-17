@@ -3,6 +3,32 @@
 ## Introduction
 Learn how to store any binary or non-binary file into a SQL-Server database table using C# and SqlClient  classes which is one option while the other option is using FILESTREAM. Which one to use can be a team decision, a DBA decision or dependent on amount and sizes of files. Here the focus will be on storing files in a column within a table.
 
+## Porting from old article
+
+This article is a port from Microsoft TechNet which Karen wrote November 27 2019. Microsoft TechNet is going away thus the reason for this article.
+
+Original code was written in 4.5 and 4.7 framework which still exist, and two new projects have been added using NET8. To write the NET8 versions, new projects were created, old framework code added to the new class project then refactored the code. A console project was added to insert and read back a image file. It does not matter the file type, if a image works so will other file types.
+
+**Author’s opinion**, it depends on how many files will be stored along with file sizes and usage of images. For example, there is a table that represents categories for products with ten rows, one image per row, this is a decent reason for storing images in a database table. Before storing files in a database table read the Stackoverflow post and decide which is best, file system or database storage. 
+
+## Code presented below
+
+None of the NET8 code is shown, once the [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles) is clone examine the code. NET8 code is basically the same as the framework code but better. For example `cmd.Parameters.AddWithValue` has been replaced with `cmd.Parameters.Add` and more refinements.
+
+
+## Source code
+
+Clone the following GitHub [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles). For the [NET8](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks?cid=getdotnetsdk) core projects, this requires that NET8 is installed and using Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
+
+## Storing files
+
+Should files be stored in a database or the file system?
+
+For a great discussion, read the following [Stackoverflow post](https://stackoverflow.com/questions/3748/storing-images-in-db-yea-or-nay#3756).
+
+
+
+
 ## Column type used for storing files
 The column type which will be used is varbinary(MAX) which is best suited for this type of operation.
 
