@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 15
-VisualStudioVersion = 15.0.28307.757
+# Visual Studio Version 17
+VisualStudioVersion = 17.8.34309.116
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "SingleFileUploadAndRead", "WindowsFormsApplication1\SingleFileUploadAndRead.csproj", "{70C65716-57C4-4B9F-8EEA-BD6D8A6FCD38}"
 EndProject
@@ -13,6 +13,14 @@ Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Solution Items", "Solution 
 	ProjectSection(SolutionItems) = preProject
 		readme.md = readme.md
 	EndProjectSection
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "net framework", "net framework", "{A077A170-7945-4DE2-82C6-09B457A43984}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "core framework", "core framework", "{FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLibrary\BackendLibrary.csproj", "{7F3730F4-546A-4D90-A87A-0B640752330B}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogsCoreLibrary", "DialogsCoreLibrary\DialogsCoreLibrary.csproj", "{1A12E30E-8396-4C35-8C7C-110E2A2918C7}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -32,9 +40,24 @@ Global
 		{397B6D8E-6522-46D1-8B8C-985AF1972307}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{397B6D8E-6522-46D1-8B8C-985AF1972307}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{397B6D8E-6522-46D1-8B8C-985AF1972307}.Release|Any CPU.Build.0 = Release|Any CPU
+		{7F3730F4-546A-4D90-A87A-0B640752330B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{7F3730F4-546A-4D90-A87A-0B640752330B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{7F3730F4-546A-4D90-A87A-0B640752330B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{7F3730F4-546A-4D90-A87A-0B640752330B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(NestedProjects) = preSolution
+		{70C65716-57C4-4B9F-8EEA-BD6D8A6FCD38} = {A077A170-7945-4DE2-82C6-09B457A43984}
+		{8C9BBBED-4DC9-45C8-B1B9-5E5D7AF6454C} = {A077A170-7945-4DE2-82C6-09B457A43984}
+		{397B6D8E-6522-46D1-8B8C-985AF1972307} = {A077A170-7945-4DE2-82C6-09B457A43984}
+		{7F3730F4-546A-4D90-A87A-0B640752330B} = {FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}
+		{1A12E30E-8396-4C35-8C7C-110E2A2918C7} = {FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15054D5A-50AF-4404-8276-3A110D45C768}
