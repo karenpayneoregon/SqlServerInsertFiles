@@ -22,6 +22,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLi
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DialogsCoreLibrary", "DialogsCoreLibrary\DialogsCoreLibrary.csproj", "{1A12E30E-8396-4C35-8C7C-110E2A2918C7}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CoreFrontend", "CoreFrontend\CoreFrontend.csproj", "{5CAD7228-0453-42CB-9E19-02F200C72EAE}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -48,6 +50,10 @@ Global
 		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{1A12E30E-8396-4C35-8C7C-110E2A2918C7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{5CAD7228-0453-42CB-9E19-02F200C72EAE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{5CAD7228-0453-42CB-9E19-02F200C72EAE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{5CAD7228-0453-42CB-9E19-02F200C72EAE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{5CAD7228-0453-42CB-9E19-02F200C72EAE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -58,6 +64,7 @@ Global
 		{397B6D8E-6522-46D1-8B8C-985AF1972307} = {A077A170-7945-4DE2-82C6-09B457A43984}
 		{7F3730F4-546A-4D90-A87A-0B640752330B} = {FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}
 		{1A12E30E-8396-4C35-8C7C-110E2A2918C7} = {FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}
+		{5CAD7228-0453-42CB-9E19-02F200C72EAE} = {FBCF7D31-93A3-43B0-8924-E0FFE1564ECE}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {15054D5A-50AF-4404-8276-3A110D45C768}

@@ -1,12 +1,5 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 using static DialogLibrary.KarenDialogs;
 
@@ -41,17 +34,17 @@ namespace WindowsFormsApplication1
         }
         /// <summary>
         /// Extract file by id using know record id that will always
-        /// exists unless someone trying this code deletes the record.
+        /// exist unless someone trying this code deletes the record.
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void SelectSimpleButton_Click(object sender, EventArgs e)
         {
             var ops = new DataOperations();
-            var identifier = 2;
+            var identifier = 3;
             var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "extracted.html");
 
-            if (ops.ReadFileFromDatabaseTableSimple(identifier, fileName))
+            if (ops.ReadFileFromDatabaseTableSimple("Dogma1.html", fileName))
             {
                 MessageBox.Show("Success");
             }
@@ -81,7 +74,7 @@ namespace WindowsFormsApplication1
             {
                 var ops = new DataOperations();
 
-                var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "EventFiles", "CPR_2.docx");
+                var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "CPR_2.docx");
 
                 // new identifier returned
                 var identifier = 0;

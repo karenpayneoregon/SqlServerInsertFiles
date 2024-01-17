@@ -1,4 +1,5 @@
 ﻿using System.Data;
+using System.Reflection.PortableExecutable;
 using Dapper;
 using Microsoft.Data.SqlClient;
 
@@ -23,7 +24,7 @@ public class DataOperations
         cn.Execute("DBCC CHECKIDENT (EventAttachments, RESEED, 0)");
     }
 
-    public void ResetEvent()
+    public void ResetEvents()
     {
         using SqlConnection cn = new(ConnectionString());
 
@@ -55,13 +56,14 @@ public class DataOperations
         };
 
         cmd.Parameters.Add("@FileContents", SqlDbType.VarBinary, fileByes.Length).Value = fileByes;
-        cmd.Parameters.Add(new SqlParameter("", SqlDbType.Text)).Value = fileName;
+        cmd.Parameters.Add(new SqlParameter("@FileName", SqlDbType.Text)).Value = fileName;
 
         try
         {
             cn.Open();
 
             newIdentifier = Convert.ToInt32(cmd.ExecuteScalar());
+            Console.WriteLine($"\tinserted identifier: {newIdentifier}");
             return (true,null);
 
         }
@@ -71,25 +73,25 @@ public class DataOperations
         }
     }
 
-    public (bool success, Exception exception) ReadFileFromDatabaseTableSimple(int identifier, string fileName)
+    public (bool success, Exception exception) ReadFileFromDatabaseTableSimple(string fileNameInDatabase, string fileName)
     {
         using SqlConnection cn = new() { ConnectionString = ConnectionString() };
         using SqlCommand cmd = new()
         {
             Connection = cn, 
-            CommandText = 
+            CommandText =
                 """
                 SELECT id, [FileContents], FileName
                 FROM Table1
-                WHERE id = @id;
+                WHERE FileName = @FileName;
                 """
         };
         cmd.Parameters.Add(new SqlParameter()
         {
-            ParameterName = "@id",
-            DbType = DbType.Int64
+            ParameterName = "@FileName",
+            DbType = DbType.String
 
-        }).Value = identifier;
+        }).Value = fileNameInDatabase;
 
         try
         {
@@ -100,7 +102,7 @@ public class DataOperations
             if (reader.HasRows)
             {
                 reader.Read();
-
+                Console.WriteLine($"\tRead back id: {reader.GetInt32(0)}");
                 // the blob field
                 var fieldOrdinal = reader.GetOrdinal("FileContents");
 

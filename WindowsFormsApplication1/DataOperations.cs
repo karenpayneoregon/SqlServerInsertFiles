@@ -50,15 +50,22 @@ namespace WindowsFormsApplication1
                 }
             }
         }
-        public bool ReadFileFromDatabaseTableSimple(int Identifier, string fileName)
+        /// <summary>
+        /// Extract file by name in database, the original code extracted by id and seemed to be
+        /// a good idea at the time yest there is no guarantee of the idea for a specific file.
+        /// </summary>
+        /// <param name="fileNameInDatabase">file name in table, column FileName</param>
+        /// <param name="fileName"></param>
+        /// <returns></returns>
+        public bool ReadFileFromDatabaseTableSimple(string fileNameInDatabase, string fileName)
         {
             using (var cn = new SqlConnection() { ConnectionString = Default.ConnectionString })
             {
-                const string statement = "SELECT id, [FileContents], FileName FROM Table1  WHERE id = @id;";
+                const string statement = "SELECT id, [FileContents], FileName FROM Table1  WHERE FileName = @FileName;";
 
                 using (var cmd = new SqlCommand() { Connection = cn, CommandText = statement})
                 {
-                    cmd.Parameters.AddWithValue("@id", Identifier);
+                    cmd.Parameters.AddWithValue("@FileName", fileNameInDatabase);
 
                     try
                     {
@@ -84,9 +91,7 @@ namespace WindowsFormsApplication1
                             fs.Write(blob, 0, blob.Length);
 
                     }
-
                         return true;
-
                     }
 
                     catch (Exception ex)
@@ -105,8 +110,8 @@ namespace WindowsFormsApplication1
         /// <param name="EventIdentifier">id for parent row</param>
         /// <returns></returns>
         /// <remarks>
-        /// Note that I'm storing file name and extension in two fields, I could
-        /// of done just the file name or had a column for file type or mime type.
+        /// Note that I'm storing file name and extension in two fields, I could have
+        ///  done just the file name or had a column for file type or mime type.
         /// 
         /// What matters for a real app is do we need the original file name or
         /// allow the user a new file name.
