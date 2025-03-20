@@ -27,7 +27,7 @@ internal partial class Program
 
         if (success)
         {
-            AnsiConsole.MarkupLine("[green]Burning image inserted[/]");
+            AnsiConsole.MarkupLine($"[green]Burning image inserted[/] [yellow]Id {identifier}[/]");
             /*
              * Extract first instance of Burning.png as Burning1.png to the
              * application folder
@@ -59,6 +59,7 @@ internal partial class Program
         {
             ExceptionHelpers.ColorStandard(exception);
         }
+
         ExitPrompt();
 
     }

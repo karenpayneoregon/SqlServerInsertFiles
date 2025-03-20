@@ -26,8 +26,4 @@ public class SpectreConsoleHelpers
         Console.WriteLine();
     }
 
-    public static void LineSeparator()
-    {
-        AnsiConsole.Write(new Rule().RuleStyle(Style.Parse("grey")).Centered());
-    }
 }

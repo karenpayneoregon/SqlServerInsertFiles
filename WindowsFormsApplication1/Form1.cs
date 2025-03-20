@@ -65,7 +65,7 @@ namespace WindowsFormsApplication1
         /// 
         ///   SELECT id FROM EventAttachments WHERE FileBaseName = 'CPR'
         /// 
-        /// To ensure it does not exists, of course we would do more conditions
+        /// To ensure it does not exist, of course we would do more conditions
         /// in the WHERE for a real app.
         /// </remarks>
         private void InsertToChildTableButton_Click(object sender, EventArgs e)

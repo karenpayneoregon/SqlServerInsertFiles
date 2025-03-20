@@ -1,48 +1,43 @@
 ﻿namespace DialogsCoreLibrary;
-public class Dialogs
-{
-    /// <summary>
-    /// Dialog to ask a question
-    /// </summary>
-    /// <param name="caption">text for dialog caption</param>
-    /// <param name="heading">text for dialog heading</param>
-    /// <param name="yesText">text for yes button</param>
-    /// <param name="noText">text for no button</param>
-    /// <param name="defaultButton">specifies the default button for this dialog</param>
-    /// <returns>true for yes button, false for no button</returns>
-    public static bool Question(string caption, string heading, string yesText, string noText, DialogResult defaultButton)
+
+    public class Dialogs
     {
-
-        TaskDialogButton yesButton = new(yesText) { Tag = DialogResult.Yes };
-        TaskDialogButton noButton = new(noText) { Tag = DialogResult.No };
-
-        TaskDialogButtonCollection buttons = new();
-
-        if (defaultButton == DialogResult.Yes)
+        public static bool Question(string caption, string heading, string yesText, string noText, DialogResult defaultButton)
         {
-            buttons.Add(yesButton);
-            buttons.Add(noButton);
+            TaskDialogButtonCollection buttons = defaultButton == DialogResult.Yes ? YesButtonFirst(yesText, noText) : NoButtonFirst(noText, yesText);
+            TaskDialogPage page = new()
+            {
+                Caption = caption,
+                SizeToContent = true,
+                Heading = heading,
+                Icon = new TaskDialogIcon(Properties.Resources.question32),
+                Buttons = buttons
+            };
+
+            var result = TaskDialog.ShowDialog(page);
+            return (DialogResult)result.Tag! == DialogResult.Yes;
         }
-        else
+        public static bool Question(Control owner, string caption, string text, DialogResult defaultButton = DialogResult.No)
         {
-            buttons.Add(noButton);
-            buttons.Add(yesButton);
+            TaskDialogButtonCollection buttons = defaultButton == DialogResult.Yes ? YesButtonFirst("Yes", "No") : NoButtonFirst("No", "Yes");
+            TaskDialogPage page = new()
+            {
+                Caption = caption,
+                SizeToContent = true,
+                Heading = text,
+                Icon = new TaskDialogIcon(Properties.Resources.question32),
+                Buttons = buttons
+            };
+
+            var result = TaskDialog.ShowDialog(owner, page);
+            return (DialogResult)result.Tag! == DialogResult.Yes;
         }
 
-        TaskDialogPage page = new()
-        {
-            Caption = caption,
-            SizeToContent = true,
-            Heading = heading,
-            Icon = TaskDialogIcon.Information,
-            Buttons = buttons
-        };
+        private static TaskDialogButtonCollection YesButtonFirst(string yesText, string noText)
+            => [new TaskDialogButton(yesText) { Tag = DialogResult.Yes }, new TaskDialogButton(noText) { Tag = DialogResult.No }];
 
-
-        TaskDialogButton result = TaskDialog.ShowDialog(page);
-
-        return (DialogResult)result.Tag! == DialogResult.Yes;
-
-    }
-
+        private static TaskDialogButtonCollection NoButtonFirst(string yesText, string noText)
+            => [new TaskDialogButton(noText) { Tag = DialogResult.No }, new TaskDialogButton(yesText) { Tag = DialogResult.Yes }];
 }
+
+
