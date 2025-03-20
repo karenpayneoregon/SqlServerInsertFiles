@@ -18,7 +18,7 @@ None of the NET9 code is shown, once the [repository](https://github.com/karenpa
 
 ## Source code
 
-Clone the following GitHub [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles). For the [NET8](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks?cid=getdotnetsdk) core projects, this requires that NET8 is installed and using Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
+Clone the following GitHub [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles). For the [NET8](https://dotnet.microsoft.com/en-us/download/visual-studio-sdks?cid=getdotnetsdk) core projects, this requires that NET9 is installed and using Microsoft [Visual Studio 2022](https://visualstudio.microsoft.com/downloads/).
 
 ## Storing files
 
