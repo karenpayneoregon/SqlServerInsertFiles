@@ -18,6 +18,11 @@ internal partial class Program
 
         DataOperations operations = new();
 
+        var exists = operations.FileExistInTable1("Burning.png");
+        AnsiConsole.MarkupLine(exists
+            ? "[yellow]Burning image already exists[/]"
+            : "[yellow]Burning image does not exist[/]");
+
         // physical file to insert into table
         var fileName = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "Burning.png");
         // new id after insert.

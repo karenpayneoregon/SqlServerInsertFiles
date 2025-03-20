@@ -67,6 +67,17 @@ public class DataOperations
         cn.Execute("DBCC CHECKIDENT (Events, RESEED, 0)");
     }
 
+    public bool FileExistInTable1(string fileName)
+    {
+        using var connection = new SqlConnection(ConnectionString());
+        string query = """
+                       SELECT 1 
+                       FROM InsertImagesDatabase.dbo.Table1 
+                       WHERE FileName = @FileName
+                       """;
+
+        return connection.QueryFirstOrDefault<int?>(query, new { FileName = fileName }) != null;
+    }
     /// <summary>
     /// Inserts a file into the database by reading its contents and storing it along with its name.
     /// </summary>

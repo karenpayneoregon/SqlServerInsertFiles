@@ -13,7 +13,7 @@ Original code was written in 4.5 and 4.7 framework which still exist, and two ne
 
 ## Code presented below
 
-None of the NET8 code is shown, once the [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles) is clone examine the code. NET8 code is basically the same as the framework code but better. For example `cmd.Parameters.AddWithValue` has been replaced with `cmd.Parameters.Add` and more refinements.
+None of the NET9 code is shown, once the [repository](https://github.com/karenpayneoregon/SqlServerInsertFiles) is clone examine the code. NET8 code is basically the same as the framework code but better. For example `cmd.Parameters.AddWithValue` has been replaced with `cmd.Parameters.Add` and more refinements.
 
 
 ## Source code
