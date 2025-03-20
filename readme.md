@@ -7,7 +7,7 @@ Learn how to store any binary or non-binary file into a SQL-Server database tabl
 
 This article is a port from Microsoft TechNet which Karen wrote November 27 2019. Microsoft TechNet is going away thus the reason for this article.
 
-Original code was written in 4.5 and 4.7 framework which still exist, and two new projects have been added using NET8. To write the NET8 versions, new projects were created, old framework code added to the new class project then refactored the code. A console project was added to insert and read back a image file. It does not matter the file type, if a image works so will other file types.
+Original code was written in 4.5 and 4.7 framework which still exist, and two new projects have been added using NET9. To write the NET8 versions, new projects were created, old framework code added to the new class project then refactored the code. A console project was added to insert and read back a image file. It does not matter the file type, if a image works so will other file types.
 
 **Author’s opinion**, it depends on how many files will be stored along with file sizes and usage of images. For example, there is a table that represents categories for products with ten rows, one image per row, this is a decent reason for storing images in a database table. Before storing files in a database table read the Stackoverflow post and decide which is best, file system or database storage. 
 
